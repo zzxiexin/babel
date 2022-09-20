@@ -1,4 +1,3 @@
-export const name = "babel";
-export default function log() {
+export const arrow = () => {
   console.log("log");
-}
+};
