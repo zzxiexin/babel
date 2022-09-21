@@ -9,8 +9,10 @@ fs.readFile("./source_code.js", "utf8", function (err, datastr) {
       plugins: ["@babel/plugin-transform-arrow-functions"],
     },
     function (err, result) {
-      console.log("ast====>", result.ast);
-      console.log("code====>", result.code);
+      console.log("code===>", result.code);
+      console.log("map===>", result.map);
+      console.log("ast===>", result.ast);
+      console.log("result===>", JSON.stringify(result));
     }
   );
 });
