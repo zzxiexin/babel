@@ -1,15 +1,5 @@
 "use strict";
 
-require("core-js/modules/es.error.cause.js");
-
-require("core-js/modules/es.error.to-string.js");
-
-require("core-js/modules/es.function.name.js");
-
-require("core-js/modules/es.array.concat.js");
-
-require("core-js/modules/es.object.define-property.js");
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
