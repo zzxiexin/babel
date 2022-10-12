@@ -10,8 +10,7 @@
     "core-js": "^3.25.2"
   },
   "scripts": {
-    "babel": "./node_modules/.bin/babel src -x .js,.ts,.tsx --out-dir dist",
-    "babel:2": "npx babel src -x .js,.ts,.tsx --plugins xxx --presets xxx --out-dir dist"
+    "babel": "./node_modules/.bin/babel src -x .js,.ts,.tsx --out-dir dist"
   },
   "dependencies": {}
 }

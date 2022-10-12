@@ -11,15 +11,15 @@ class Person {
   }
 }
 
-// class Xinxin extends Person {
-//     constructor (name, age, sex){
-//         super(name, age)
-//         this.sex = sex;
-//     }
-//     getInfo (){
-//         console.log(`my name is ${this.name}, and my age is ${this.age}, sex is ${this.sex}`)
-//     }
-// }
-// var person = new Xinxin('xinxin', 20, 'man');
-// person.say();
-// person.getInfo();
+class Xinxin extends Person {
+    constructor (name, age, sex){
+        super(name, age)
+        this.sex = sex;
+    }
+    getInfo (){
+        console.log(`my name is ${this.name}, and my age is ${this.age}, sex is ${this.sex}`)
+    }
+}
+var person = new Xinxin('xinxin', 20, 'man');
+person.say();
+person.getInfo();

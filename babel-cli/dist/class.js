@@ -1,14 +1,56 @@
 "use strict";
 
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 require("core-js/modules/es.error.cause.js");
 
 require("core-js/modules/es.error.to-string.js");
+
+require("core-js/modules/es.object.set-prototype-of.js");
+
+require("core-js/modules/es.function.bind.js");
+
+require("core-js/modules/es.object.get-prototype-of.js");
+
+require("core-js/modules/es.object.to-string.js");
+
+require("core-js/modules/es.reflect.to-string-tag.js");
+
+require("core-js/modules/es.reflect.construct.js");
+
+require("core-js/modules/es.object.create.js");
+
+require("core-js/modules/es.symbol.js");
+
+require("core-js/modules/es.symbol.description.js");
+
+require("core-js/modules/es.symbol.iterator.js");
+
+require("core-js/modules/es.array.iterator.js");
+
+require("core-js/modules/es.string.iterator.js");
+
+require("core-js/modules/web.dom-collections.iterator.js");
 
 require("core-js/modules/es.function.name.js");
 
 require("core-js/modules/es.array.concat.js");
 
 require("core-js/modules/es.object.define-property.js");
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -37,15 +79,33 @@ var Person = /*#__PURE__*/function () {
   }]);
 
   return Person;
-}(); // class Xinxin extends Person {
-//     constructor (name, age, sex){
-//         super(name, age)
-//         this.sex = sex;
-//     }
-//     getInfo (){
-//         console.log(`my name is ${this.name}, and my age is ${this.age}, sex is ${this.sex}`)
-//     }
-// }
-// var person = new Xinxin('xinxin', 20, 'man');
-// person.say();
-// person.getInfo();
+}();
+
+var Xinxin = /*#__PURE__*/function (_Person) {
+  _inherits(Xinxin, _Person);
+
+  var _super = _createSuper(Xinxin);
+
+  function Xinxin(name, age, sex) {
+    var _this;
+
+    _classCallCheck(this, Xinxin);
+
+    _this = _super.call(this, name, age);
+    _this.sex = sex;
+    return _this;
+  }
+
+  _createClass(Xinxin, [{
+    key: "getInfo",
+    value: function getInfo() {
+      console.log("my name is ".concat(this.name, ", and my age is ").concat(this.age, ", sex is ").concat(this.sex));
+    }
+  }]);
+
+  return Xinxin;
+}(Person);
+
+var person = new Xinxin('xinxin', 20, 'man');
+person.say();
+person.getInfo();
