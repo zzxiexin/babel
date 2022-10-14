@@ -2,7 +2,7 @@
 
 #### 定义： 所谓Preset就是一些Plugin组成的合集,你可以将Preset理解称为就是一些的Plugin整合称为的一个包。
 
-@babel/preset-env：@babel/preset-env是一个智能预设，它可以将我们的高版本JavaScript代码进行转译根据内置的规则转译成为低版本的javascript代码，需要额外注意的是@babel/preset-env仅仅针对语法阶段的转译，比如转译箭头函数，const/let语法。针对一些Api或者Es6内置模块的polyfill，preset-env是无法进行转译的。这块内容我们会在之后的polyfill中为大家进行详细讲解。
+@babel/preset-env：@babel/preset-env是一个智能预设，它可以将我们的高版本JavaScript代码进行转译根据内置的规则转译成为低版本的javascript代码，需要额外注意的是@babel/preset-env仅仅针对语法阶段的转译，比如转译箭头函数，const/let语法。针对一些Api或者Es6内置模块的polyfill，@babel/preset-env是无法进行转译的。这块内容我们会在之后的polyfill中为大家进行详细讲解。
 
 @babel/preset-react：通常我们在使用React中的jsx时，相信大家都明白实质上jsx最终会被编译称为React.createElement()方法，这个预设起到的就是将jsx进行转译的作用。
 
@@ -22,12 +22,12 @@
 ------------
 
 ### 3、polyfill 
-#### 定义：babel-prest-env仅仅只会转化最新的es语法，并不会转化对应的Api和实例方法,比如说ES6中的Array.from静态方法。babel是不会转译这个方法的，如果想在低版本浏览器中识别并且运行Array.from方法达到我们的预期就需要额外引入polyfill进行在Array上添加实现这个方法。其实可以稍微简单总结一下，语法层面的转化preset-env完全可以胜任。但是一些内置方法模块，仅仅通过preset-env的语法转化是无法进行识别转化的，所以就需要一系列类似”垫片“的工具进行补充实现这部分内容的低版本代码实现。这就是所谓的polyfill的作用；
+#### 定义：@babel/preset-env仅仅只会转化最新的es语法，并不会转化对应的Api和实例方法,比如说ES6中的Array.from静态方法。babel是不会转译这个方法的，如果想在低版本浏览器中识别并且运行Array.from方法达到我们的预期就需要额外引入polyfill进行在Array上添加实现这个方法。其实可以稍微简单总结一下，语法层面的转化preset-env完全可以胜任。但是一些内置方法模块，仅仅通过@babel/preset-env的语法转化是无法进行识别转化的，所以就需要一系列类似”垫片“的工具进行补充实现这部分内容的低版本代码实现。这就是所谓的polyfill的作用；
 
 1. 在babel配置文件中使用@babel/polyfill：   
 原理： 通过babelPolyfill通过往全局对象上添加属性以及直接修改内置对象的Prototype上添加方法实现polyfill。比如说我们需要支持String.prototype.include，在引入babelPolyfill这个包之后，它会在全局String的原型对象上添加include方法从而支持我们的Js Api。
 
- 使用配置：在babel-preset-env中存在一个useBuiltIns参数，这个参数决定了如何在preset-env中使用@babel/polyfill。
+ 使用配置：在@babel/preset-env中存在一个useBuiltIns参数，这个参数决定了如何在@babel/preset-env中使用@babel/polyfill。
 ```javascript
     {
         "presets": [
@@ -51,19 +51,19 @@ usage ：对使用到的api做兼容，去除无需的api兼容；
 ```javascript
 import promise from 'babel-runtime/core-js/promise'。
 ```
-同时上边我们讲到对于preset-env的useBuintIns配置项，我们的polyfill是preset-env帮我们智能引入。
-而babel-runtime则会将引入方式由智能完全交由我们自己，我们需要什么自己引入什么。
-它的用法很简单，只要我们去安装npm install --save @babel/runtime后，在需要使用对应的polyfill的地方去单独引入就可以了。比如：
-// a.js 中需要使用Promise 我们需要手动引入对应的运行时polyfill
+同时上边我们讲到对于@babel/preset-env的useBuintIns配置项，我们的polyfill是@babel/preset-env帮我们智能引入。
+而@babel/runtime 则会将引入方式由智能完全交由我们自己，我们需要什么自己引入什么。
+它的用法很简单，只要我们去安装npm install --save @babel/runtime后，在需要使用对应的polyfill的地方去单独引入就可以了。比如：     
+// a.js 中需要使用Promise 我们需要手动引入对应的运行时polyfill   
 ```javascript
 import Promise from 'babel-runtime/core-js/promise'
 const promsies = new Promise()
 ```
 
- 总而言之，babel/runtime你可以理解称为就是一个运行时“哪里需要引哪里”的工具库。
-针对babel/runtime绝大多数情况下我们都会配合@babel/plugin-transfrom-runtime进行使用达到智能化runtime的polyfill引入。   
+ 总而言之，@babel/runtime你可以理解称为就是一个运行时“哪里需要引哪里”的工具库。   
+针对@babel/runtime 绝大多数情况下我们都会配合@babel/plugin-transfrom-runtime进行使用达到智能化runtime的polyfill引入。   
 
- #####  babel-runtime存在的问题
+ ##### @babel/runtime 存在的问题
  babel-runtime在我们手动引入一些polyfill的时候，它会给我们的代码中注入一些类似_extend()，  classCallCheck()之类的工具函数，这些工具函数的代码会包含在编译后的每个文件中，比如：
 ```javascript
 class Circle {}
@@ -74,19 +74,19 @@ var Circle = function Circle() { _classCallCheck(this, Circle); };
 如果我们项目中存在多个文件使用了class，那么无疑在每个文件中注入这样一段冗余重复的工具函数将是一种灾难。
 所以针对上述提到的两个问题:
 
- babel-runtime无法做到智能化分析，需要我们手动引入。
- babel-runtime编译过程中会重复生成冗余代码。
+ @babel/runtime 无法做到智能化分析，需要我们手动引入。
+ @babel/runtime  编译过程中会重复生成冗余代码。
  我们就要引入我们的主角@babel/plugin-transform-runtime。   
  
 ##### @babel/plugin-transform-runtime作用：
 
-@babel/plugin-transform-runtime插件的作用恰恰就是为了解决上述我们提到的run-time存在的问题而提出的插件。
+@babel/plugin-transform-runtime插件的作用恰恰就是为了解决上述我们提到的@babel/runtime 存在的问题而提出的插件。
 
-babel-runtime无法做到智能化分析，需要我们手动引入。
+@babel/runtime 无法做到智能化分析，需要我们手动引入。
 
-@babel/plugin-transform-runtime插件会智能化的分析我们的项目中所使用到需要转译的js代码，从而实现模块化从babel-runtime中引入所需的polyfill实现。
+@babel/plugin-transform-runtime插件会智能化的分析我们的项目中所使用到需要转译的js代码，从而实现模块化从@babel/runtime 中引入所需的polyfill实现。
 
-babel-runtime编译过程中会重复生成冗余代码，@babel/plugin-transform-runtime插件提供了一个helpers参数。具体你可以在这里查阅它的所有配置参数。
+@babel/runtime 编译过程中会重复生成冗余代码，@babel/plugin-transform-runtime插件提供了一个helpers参数。具体你可以在这里查阅它的所有配置参数。
 
 这个helpers参数开启后可以将上边提到编译阶段重复的工具函数，比如classCallCheck, extends等代码转化称为require语句。此时，这些工具函数就不会重复的出现在使用中的模块中了。比如这样：
 
@@ -125,7 +125,7 @@ var Circle = function Circle() { _classCallCheck(this, Circle); };
 
 3. @babel/core：babel-core是babel最核心的一个编译库，他可以将我们的代码进行词法分析--语法分析--语义分析过程从而生成AST抽象语法树，从而对于“这棵树”的操作之后再通过编译称为新的代码；
 
-5. babel-preset-env：上边我们说到babel-loader本质是一个函数，它在内部通过babel/core这个核心包进行JavaScript代码的转译。但是针对代码的转译我们需要告诉babel以什么样的规则进行转化，比如我需要告诉babel：“嘿，babel。将我的这段代码转化称为EcmaScript 5版本的内容！”。此时babel-preset-env在这里充当的就是这个作用：告诉babel我需要以为什么样的规则进行代码转移；
+5. @babel/preset-env：上边我们说到babel-loader本质是一个函数，它在内部通过babel/core这个核心包进行JavaScript代码的转译。但是针对代码的转译我们需要告诉babel以什么样的规则进行转化，比如我需要告诉babel：“嘿，babel。将我的这段代码转化称为EcmaScript 5版本的内容！”。此时@babel/preset-env在这里充当的就是这个作用：告诉babel我需要以为什么样的规则进行代码转移；
 
 详细配置：
 ```javascript
