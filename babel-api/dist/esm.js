@@ -5,7 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = fun;
 exports.name = void 0;
-var name = "test";
+var name = 'test';
 exports.name = name;
-
 function fun() {}

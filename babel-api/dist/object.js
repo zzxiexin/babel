@@ -5,7 +5,7 @@ var object = {
   b: 2
 };
 var c = object.a,
-    d = object.b;
+  d = object.b;
 c = 9, d = 10;
 console.log(c, d);
 console.log(object);
