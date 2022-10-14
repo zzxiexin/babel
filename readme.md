@@ -174,3 +174,5 @@ var Circle = function Circle() { _classCallCheck(this, Circle); };
 #### 4、我们使用 @babel/cli 从终端运行 Babel，利用 @babel/polyfill 来模拟所有新的 JavaScript 功能，而 @babel/preset-env 只对我们所使用的并且目标浏览器中缺失的功能进行代码转换和加载 polyfill;
 
 #### 5、配置项优先级：babel.config.json < .babelrc < programmatic options from @babel/cli
+
+#### 6.@babel/plugin-transform-runtime 该插件可以去除注入到文件的代码，改为require的方式引入，从而减小文件的体积；
