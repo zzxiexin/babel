@@ -2,6 +2,7 @@ const babel = require('@babel/core');
 const fs = require('fs');
 const path = require('path');
 const dirName = path.resolve('./src');
+const babelConfig = require('../babel.config')
 // 判断是不是文件夹
 const judgeIsDirectory = (fileNameStr) => {
   return fs.lstatSync(fileNameStr).isDirectory();
@@ -38,10 +39,7 @@ const getAllFiles = (fileOrDir) => {
 // babel编译代码并写入到新的文件中
 const allChangeFiles = getAllFiles(dirName);
 allChangeFiles.forEach((file) => {
-  const changedCode = babel.transformFileSync(file, {
-    presets: ['@babel/preset-env'],
-    plugins: ['@babel/plugin-transform-runtime'],
-  });
+  const changedCode = babel.transformFileSync(file, babelConfig);
   writeFileRecursive(
     `${file.replace('src', 'dist')}`,
     changedCode.code,

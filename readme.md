@@ -165,11 +165,11 @@ var Circle = function Circle() { _classCallCheck(this, Circle); };
 ```
 
 #### 补充：
-#### 1、插件先执行，预设后执行，preset 配置是从右往左，plugins 则是从左往右；
+#### 1、插件先执行，预设后执行，plugins 是从左往右,preset 则是配置是从右往左；
 
 #### 2、babel.config.json 的文件（需要 v7.8.0 或更高版本）；
 
-#### 3、useBuiltIns 配置项是优化 polyfill 是否需要完整打包进去；
+#### 3、使用@babel/ployfill有两种方式，第一是使用presets里的@babel/preset-env 通过配置useBuiltIns配置项来优化代码大小，也可以使用plugins中的@babel/runtime配合@babel/plugin-transform-runtime来实现按需加载；
 
 #### 4、我们使用 @babel/cli 从终端运行 Babel，利用 @babel/polyfill 来模拟所有新的 JavaScript 功能，而 @babel/preset-env 只对我们所使用的并且目标浏览器中缺失的功能进行代码转换和加载 polyfill;
 

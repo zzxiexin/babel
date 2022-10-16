@@ -1,8 +1,8 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 var _cjs = _interopRequireDefault(require("./cjs"));
 var _esm = _interopRequireDefault(require("./esm"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 // import和require混用模式
 // 1、require引入cjs
 var cjs = require('./cjs');

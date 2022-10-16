@@ -3,24 +3,15 @@
     "presets": [
       [
         "@babel/preset-env",
-        {
-          "useBuiltIns": "usage",
-          "corejs": "3.25.2"
-        }
+        // {
+        //   "useBuiltIns": "usage",
+        //   "corejs": "3.25.2"
+        // }
       ],
-      [
-        "@babel/preset-react",
-        {
-          "pragma": "dom", // default pragma is React.createElement (only in classic runtime)
-          "pragmaFrag": "DomFrag", // default is React.Fragment (only in classic runtime)
-          "throwIfNamespace": false, // defaults to true
-          "runtime": "classic" // defaults to classic
-          // "importSource": "custom-jsx-library" // defaults to react (only in automatic runtime)
-        }
-      ],
-      ["@babel/preset-typescript"]
+      "@babel/preset-react",
+      "@babel/preset-typescript"
     ],
-    "plugins": []
+    "plugins": [["@babel/plugin-transform-runtime", { "corejs": "3" }]]
   }
   // js 格式  babel.config.js || .babelrc.js 还可以根据环境配置；
   // const presets = [ ... ];
