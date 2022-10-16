@@ -101,20 +101,30 @@ var Circle = function Circle() { _classCallCheck(this, Circle); };
 
 这里为列一份目前它的默认配置:   
 ```javascript
+// json 格式 babel.config.json || .babelrc.json
 {
-  "plugins": [
-    [
-      "@babel/plugin-transform-runtime",
-      {
-        "absoluteRuntime": false,
-        "corejs": false,
-        "helpers": true,
-        "regenerator": true,
-        "version": "7.0.0-beta.0"
-      }
-    ]
-  ]
-}
+    "presets": [
+      [
+        "@babel/preset-env",
+        // {
+        //   "useBuiltIns": "usage",
+        //   "corejs": "3.25.2"
+        // }
+      ],
+      "@babel/preset-react",
+      "@babel/preset-typescript"
+    ],
+    "plugins": [["@babel/plugin-transform-runtime", { "corejs": "3" }]]
+  }
+  // js 格式  babel.config.js || .babelrc.js 还可以根据环境配置；
+  // const presets = [ ... ];
+  // const plugins = [ ... ];
+  
+  // if (process.env["ENV"] === "prod") {
+  //   plugins.push(...);
+  // }
+  
+  // module.exports = { presets, plugins };
 ```
 ------------
 
@@ -169,7 +179,7 @@ var Circle = function Circle() { _classCallCheck(this, Circle); };
 
 #### 2、babel.config.json 的文件（需要 v7.8.0 或更高版本）；
 
-#### 3、使用@babel/ployfill有两种方式，第一是使用presets里的@babel/preset-env 通过配置useBuiltIns配置项来优化代码大小，也可以使用plugins中的@babel/runtime配合@babel/plugin-transform-runtime来实现按需加载；
+#### 3、兼容新的API有两种方式，第一是使用presets里的@babel/preset-env 通过配置useBuiltIns配置项来优化代码大小，也可以使用plugins中的@babel/runtime配合@babel/plugin-transform-runtime来实现按需加载；
 
 #### 4、我们使用 @babel/cli 从终端运行 Babel，利用 @babel/polyfill 来模拟所有新的 JavaScript 功能，而 @babel/preset-env 只对我们所使用的并且目标浏览器中缺失的功能进行代码转换和加载 polyfill;
 
