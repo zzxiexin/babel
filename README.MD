@@ -186,3 +186,5 @@ var Circle = function Circle() { _classCallCheck(this, Circle); };
 #### 5、配置项优先级：babel.config.json < .babelrc < programmatic options from @babel/cli
 
 #### 6.@babel/plugin-transform-runtime 该插件可以去除注入到文件的代码，改为require的方式引入，从而减小文件的体积；
+
+### 7.babel默认会把代码编译成cjs模块，但是可以通过配置"modules": false保留esm模块，配置"@babel/plugin-transform-modules-umd"插件把代码编译成umd模块；   

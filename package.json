@@ -2,6 +2,7 @@
 	"devDependencies": {
 		"@babel/cli": "^7.22.15",
 		"@babel/core": "^7.22.19",
+		"@babel/plugin-transform-modules-umd": "^7.22.5",
 		"@babel/preset-env": "^7.22.15",
 		"@babel/preset-react": "^7.22.15",
 		"@babel/preset-typescript": "^7.22.15",
@@ -9,7 +10,7 @@
 		"typescript": "^5.2.2"
 	},
 	"scripts": {
-		"cli:babel": "babel lib --out-dir dist",
-		"api:babel": "node api-transform.js"
+		"cli:babel": "rm -rf ./dist && babel lib --out-dir dist",
+		"api:babel": "rm -rf ./dist && node api-transform.js"
 	}
 }
